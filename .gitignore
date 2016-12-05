@@ -8,6 +8,14 @@ __pycache__/
 .AppleDouble
 .LSOverride
 
+# editor
+*.swp
+*.swa
+
+# virtualenv
+lib64
+bin
+
 # Thumbnails
 ._*
 
