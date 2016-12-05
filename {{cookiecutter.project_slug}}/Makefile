@@ -46,6 +46,23 @@ clean-test: ## remove test and coverage artifacts
 	rm -fr .tox/
 	rm -f .coverage
 	rm -fr htmlcov/
+	
+git-init-versioning: ## Initialize git repository
+	git init .
+	git config --global push.default current
+	git add .
+	git commit -am "First commit"
+	git remote add origin https://github.com/4383/{{ cookiecutter.project_slug }}
+	git push -u origin master
+	git branch develop
+	git checkout develop
+	git push -u origin develop
+	
+release: ## Release this project
+	git checkout master
+	git merge --no-ff develop
+	git tag 0.1.0
+	git push -u origin master --tags
 
 lint: ## check style with flake8
 	flake8 {{ cookiecutter.project_slug }} tests
@@ -92,3 +109,6 @@ dist: clean ## builds source and wheel package
 
 install: clean ## install the package to the active Python's site-packages
 	python setup.py install
+
+run: ## run app
+	python {{ cookiecutter.project_slug }}/cli.py
