@@ -52,7 +52,7 @@ git-init-versioning: ## Initialize git repository
 	git config --global push.default current
 	git add .
 	git commit -am "First commit"
-	git remote add origin https://github.com/4383/{{ cookiecutter.project_slug }}
+	git remote add origin https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}
 	git push -u origin master
 	git branch develop
 	git checkout develop
